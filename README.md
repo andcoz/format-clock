@@ -10,9 +10,6 @@ extension, written by
 [silvioricardoc] (https://extensions.gnome.org/accounts/profile/silvioricardoc),
 but is much simpler.
 
-Extension has option whether to change label of AppButton only if maximized
-windows are focused or for all windows - thanks to [Shay Elkin] (https://github.com/shayel)
-
 Installation
 ------------
 

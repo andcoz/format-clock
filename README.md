@@ -2,7 +2,7 @@ Format Clock
 ====================
 
 Gnome-Shell extension that allows to adjust clock format on the gnome-shell
-panel, date fomat in calendar menu and date format on the lock screen.
+panel, date format in calendar menu and date format on the lock screen.
 
 This extension is based on
 [Change clock format] (https://extensions.gnome.org/extension/617/fixclock/)

@@ -1,0 +1,19 @@
+<schemalist>
+  <schema id="org.gnome.shell.extensions.format-clock" path="/org/gnome/shell/extensions/format-clock/">
+    <key name="panel-clock-format" type="s">
+      <default>"%a %-d %b %T"</default>
+      <summary>Format of panel clock</summary>
+      <description>Format of panel clock</description>
+    </key>
+    <key name="calendar-menu-date-format" type="s">
+      <default>"%-d %B, %A"</default>
+      <summary>Format of date in calendar menu</summary>
+      <description>Format of date in calendar menu</description>
+    </key>
+    <key name="lock-screen-date-format" type="s">
+      <default>"%-d %B, %A"</default>
+      <summary>Format of date in lock screen</summary>
+      <description>Format of date in lock screen</description>
+    </key>
+  </schema>
+</schemalist>

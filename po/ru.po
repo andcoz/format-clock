@@ -1,0 +1,30 @@
+# format-clock extension
+# Copyright (C) 2014 eternal-sorrow <sergamena at mail dot ru>
+# This file is distributed under the same license as the format-clock package.
+# eternal-sorrow <sergamena at mail dot ru>, 2014.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: format-clock 1\n"
+"Report-Msgid-Bugs-To: https://github.com/eternal-sorrow/format-clock/issues\n"
+"POT-Creation-Date: 2014-02-21 13:45+1100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: eternal-sorrow <sergamena at mail dot ru>\n"
+"Language-Team: Russian <email@example.com>\n"
+"Language: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/prefs.js:70
+msgid "Format of panel clock:"
+msgstr "Формат часов панели:"
+
+#: ../src/prefs.js:78
+msgid "Format of date in calendar menu:"
+msgstr "Формат даты в меню календаря:"
+
+#: ../src/prefs.js:86
+msgid "Format of date on lock screen:"
+msgstr "Формат даты на экране блокировки:"

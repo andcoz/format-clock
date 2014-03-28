@@ -24,13 +24,10 @@ const Lang = imports.lang;
 const DateMenu = imports.ui.main.panel.statusArea.dateMenu;
 const LockScreen = imports.ui.main.screenShield;
 
-
-const LockClock = imports.ui.screenShield.Clock.prototype;
-const CalendarClock = imports.ui.dateMenu.DateMenuButton.prototype;
-
 const Convenience=imports.misc.extensionUtils.getCurrentExtension().imports.convenience;
 
-const old_calenar_update_clock = CalendarClock._updateClockAndDate;
+const old_calenar_update_clock = imports.ui.dateMenu.DateMenuButton.prototype._updateClockAndDate;
+const LockClock = imports.ui.screenShield.Clock.prototype;
 const old_screen_lock_update_clock = LockClock._updateClock;
 
 const calenar_update_clock = function()
@@ -50,24 +47,50 @@ const screen_lock_update_clock = function()
 let calendarButtonClockFormat=null;
 let panelClockFormat=null;
 let lockScreenDateFormat=null;
-let dm_disconnectId=null;
-let  lc_disconnectId=null;
-let _settings=null;
+let settings=null;
+
+//signal connections
+let date_menu_connection=null;
+let lock_screen_connection=null;
+let panel_clock_format_connection=null;
+let calendar_menu_date_format_connection=null;
+let lock_screen_date_format_connection=null;
 
 function init()
 {
-	_settings=Convenience.getSettings();
+	settings=Convenience.getSettings();
 }
 
 function enable()
 {
-	calendarButtonClockFormat=_settings.get_string("calendar-menu-date-format");
-	panelClockFormat=_settings.get_string("panel-clock-format");
-	lockScreenDateFormat=_settings.get_string("lock-screen-date-format");
+	panelClockFormat=settings.get_string("panel-clock-format");
+	calendarButtonClockFormat=settings.get_string("calendar-menu-date-format");
+	lockScreenDateFormat=settings.get_string("lock-screen-date-format");
+	panel_clock_format_connection=settings.connect
+	(
+		'changed::panel-clock-format',function()
+		{
+			panelClockFormat=settings.get_string("panel-clock-format");
+		}
+	);
+	settings.connect
+	(
+		'changed::calendar-menu-date-format',function()
+		{
+			calendarButtonClockFormat=settings.get_string("calendar-menu-date-format");
+		}
+	);
+	settings.connect
+	(
+		'changed::lock-screen-date-format',function()
+		{
+			lockScreenDateFormat=settings.get_string("lock-screen-date-format");
+		}
+	);
 
 	//XXX Unable to disconnect by ID
 	DateMenu._updateClockAndDate = calenar_update_clock;
-	dm_disconnectId = DateMenu._clock.connect('notify::clock',
+	date_menu_connection = DateMenu._clock.connect('notify::clock',
 			Lang.bind(DateMenu, DateMenu._updateClockAndDate));
 	DateMenu._updateClockAndDate();
 
@@ -76,7 +99,7 @@ function enable()
 	if (!(typeof(LockScreen._wallClock) === "undefined"))
 	{
 		LockScreen._updateClock = screen_lock_update_clock;
-		lc_disconnectId = LockScreen._wallClock.connect('notify::clock',
+		lock_screen_connection = LockScreen._wallClock.connect('notify::clock',
 				Lang.bind(LockScreen, LockScreen._updateClock));
 		LockScreen._updateClock();
 	}
@@ -84,7 +107,11 @@ function enable()
 
 function disable()
 {
-	DateMenu._clock.disconnect(dm_disconnectId);
+	settings.disconnect(panel_clock_format_connection);
+	settings.disconnect(calendar_menu_date_format_connection);
+	settings.disconnect(lock_screen_date_format_connection);
+
+	DateMenu._clock.disconnect(date_menu_connection);
 	DateMenu._updateClockAndDate = old_calenar_update_clock;
 	DateMenu._clock.connect('notify::clock',
 		Lang.bind(DateMenu, DateMenu._updateClockAndDate));
@@ -93,8 +120,8 @@ function disable()
 	LockClock._updateClock = old_screen_lock_update_clock;
 	if (!(typeof(LockScreen._wallClock) === "undefined"))
 	{
+		LockScreen._wallClock.disconnect(lock_screen_connection);
 		LockScreen._updateClock = old_screen_lock_update_clock;
-		LockScreen._wallClock.disconnect(lc_disconnectId);
 		LockScreen._wallClock.connect('notify::clock',
 			Lang.bind(LockScreen,LockScreen._updateClock));
 		LockScreen._updateClock();

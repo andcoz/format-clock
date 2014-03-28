@@ -37,14 +37,17 @@ function init()
 
 function addRow(grid,text,num,prop)
 {
-    let label = new Gtk.Label
-    ({
-        label: text,
-        hexpand: true,
-        halign: Gtk.Align.START
-    });
-    let entry = new Gtk.Entry({ hexpand: true });
-    entry.set_text(settings.get_string(prop));
+	let label = new Gtk.Label
+	({
+		label: text,
+		hexpand: true,
+		halign: Gtk.Align.START
+	});
+	let entry = new Gtk.Entry
+	({
+		hexpand: true,
+		text: settings.get_string(prop),
+	});
 
 	entry.connect
 	(
@@ -55,15 +58,19 @@ function addRow(grid,text,num,prop)
 		}
 	);
 
-    grid.attach(label, 0, num, 1, 1);
-// col, row, colspan, rowspan
-    grid.attach(widget, 1, num, 1, 1);
-    return entry;
+	grid.attach(label, 0, num, 1, 1);
+	// col, row, colspan, rowspan
+	grid.attach(entry, 1, num, 1, 1);
+	return entry;
 }
 
 
 function buildPrefsWidget() {	
-	let grid = new Gtk.Grid();
+	let grid = new Gtk.Grid
+	({
+		margin:10,
+		row_spacing:10
+	});
 
 	let clock_format = addRow
 	(
@@ -88,6 +95,18 @@ function buildPrefsWidget() {
 		2,
 		"lock-screen-date-format"
 	);
+	
+	help_text=new Gtk.Label
+	({
+		label: _("To learn about date format syntax, look, for example, UNIX date manual (type 'man date' in terminal)."),
+		hexpand: true,
+		halign: Gtk.Align.START,
+		wrap: true,
+		justify:  Gtk.Justification.FILL,
+		selectable: true
+	});
+	
+	grid.attach(help_text, 0, 4, 2, 1);
 
 	grid.show_all();
 	return grid;

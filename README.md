@@ -7,8 +7,7 @@ panel, date format in calendar menu and date format on the lock screen.
 This extension is based on
 [Change clock format] (https://extensions.gnome.org/extension/617/fixclock/)
 extension, written by
-[silvioricardoc] (https://extensions.gnome.org/accounts/profile/silvioricardoc),
-but is much simpler.
+[silvioricardoc] (https://extensions.gnome.org/accounts/profile/silvioricardoc).
 
 Installation
 ------------

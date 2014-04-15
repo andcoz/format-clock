@@ -1,5 +1,4 @@
-Format Clock
-====================
+# Format Clock
 
 Gnome-Shell extension that allows to adjust clock format on the gnome-shell
 panel, date format in calendar menu and date format on the lock screen.
@@ -9,21 +8,23 @@ This extension is based on
 extension, written by
 [silvioricardoc] (https://extensions.gnome.org/accounts/profile/silvioricardoc).
 
-Installation
-------------
+## Installation
 
-    git clone https://github.com/eternal-sorrow/format-clock.git
-    cd format-clock
-    ./autogen.sh
-    make
-    make install
+```sh
+git clone https://github.com/eternal-sorrow/format-clock.git
+cd format-clock
+./autogen.sh
+make
+make install
+```
 
-If you want to uninstall extension, cd to the format-clock directory and type:
-    make uninstall
-    
+If you want to uninstall the extension, type:
 
-License
--------
+```sh
+# From the root of the project directory
+make uninstall
+```
+## License
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,8 +39,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/.
 
-Author
-------
+## Author
 
 [Eternal Sorrow](https://github.com/eternal-sorrow) (sergamena at mail dot ru)
 

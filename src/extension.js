@@ -26,11 +26,11 @@ const LockScreen = imports.ui.main.screenShield;
 
 const Convenience=imports.misc.extensionUtils.getCurrentExtension().imports.convenience;
 
-const old_calenar_update_clock = imports.ui.dateMenu.DateMenuButton.prototype._updateClockAndDate;
+const old_calendar_update_clock = imports.ui.dateMenu.DateMenuButton.prototype._updateClockAndDate;
 const LockClock = imports.ui.screenShield.Clock.prototype;
 const old_screen_lock_update_clock = LockClock._updateClock;
 
-const calenar_update_clock = function()
+const calendar_update_clock = function()
 {
 	let displayDate = new Date();
 	this._clockDisplay.set_text(displayDate.toLocaleFormat(panelClockFormat));
@@ -89,7 +89,7 @@ function enable()
 	);
 
 	//XXX Unable to disconnect by ID
-	DateMenu._updateClockAndDate = calenar_update_clock;
+	DateMenu._updateClockAndDate = calendar_update_clock;
 	date_menu_connection = DateMenu._clock.connect('notify::clock',
 			Lang.bind(DateMenu, DateMenu._updateClockAndDate));
 	DateMenu._updateClockAndDate();
@@ -112,7 +112,7 @@ function disable()
 	settings.disconnect(lock_screen_date_format_connection);
 
 	DateMenu._clock.disconnect(date_menu_connection);
-	DateMenu._updateClockAndDate = old_calenar_update_clock;
+	DateMenu._updateClockAndDate = old_calendar_update_clock;
 	DateMenu._clock.connect('notify::clock',
 		Lang.bind(DateMenu, DateMenu._updateClockAndDate));
 	DateMenu._updateClockAndDate();

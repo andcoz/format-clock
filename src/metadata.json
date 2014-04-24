@@ -2,12 +2,10 @@
 	"uuid": "format-clock@eternal-sorrow.github.com", 
 	"name": "Format Clock", 
 	"shell-version": [
-		"3.6",
-		"3.8",
-		"3.10"
+		"3.12"
 		],
 	"description": "Change top panel clock format.",
-	"version": 1,
+	"version": 2,
 	"url": "https://github.com/eternal-sorrow/format-clock",
 	"settings-schema": "org.gnome.shell.extensions.format-clock"
 }

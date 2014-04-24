@@ -34,7 +34,7 @@ const calendar_update_clock = function()
 {
 	let displayDate = new Date();
 	this._clockDisplay.set_text(displayDate.toLocaleFormat(panelClockFormat));
-	this._date.set_text(displayDate.toLocaleFormat(calendarButtonClockFormat));
+	this._date.set_label(displayDate.toLocaleFormat(calendarButtonClockFormat));
 }
 
 const screen_lock_update_clock = function()
@@ -96,13 +96,10 @@ function enable()
 
 	LockClock._updateClock = screen_lock_update_clock;
 	//XXX same problem as with `dm` above.
-	if (!(typeof(LockScreen._wallClock) === "undefined"))
-	{
 		LockScreen._updateClock = screen_lock_update_clock;
 		lock_screen_connection = LockScreen._wallClock.connect('notify::clock',
 				Lang.bind(LockScreen, LockScreen._updateClock));
 		LockScreen._updateClock();
-	}
 }
 
 function disable()
@@ -118,13 +115,10 @@ function disable()
 	DateMenu._updateClockAndDate();
 
 	LockClock._updateClock = old_screen_lock_update_clock;
-	if (!(typeof(LockScreen._wallClock) === "undefined"))
-	{
 		LockScreen._wallClock.disconnect(lock_screen_connection);
 		LockScreen._updateClock = old_screen_lock_update_clock;
 		LockScreen._wallClock.connect('notify::clock',
 			Lang.bind(LockScreen,LockScreen._updateClock));
 		LockScreen._updateClock();
-	}
 }
 

@@ -21,13 +21,14 @@
 
 
 const Lang = imports.lang;
-const DateMenu = imports.ui.main.panel.statusArea.dateMenu;
-const LockScreen = imports.ui.main.screenShield;
 
 const Convenience=imports.misc.extensionUtils.getCurrentExtension().imports.convenience;
 
-const old_calendar_update_clock = imports.ui.dateMenu.DateMenuButton.prototype._updateClockAndDate;
+const DateMenu = imports.ui.main.panel.statusArea.dateMenu;
+const LockScreen = imports.ui.main.screenShield;
 const LockClock = imports.ui.screenShield.Clock.prototype;
+
+const old_calendar_update_clock = imports.ui.dateMenu.DateMenuButton.prototype._updateClockAndDate;
 const old_screen_lock_update_clock = LockClock._updateClock;
 
 const calendar_update_clock = function()
@@ -51,7 +52,8 @@ let settings=null;
 
 //signal connections
 let date_menu_connection=null;
-let lock_screen_connection=null;
+//let lock_screen_connection=null;
+//let lock_screen_locked_connection=null;
 let panel_clock_format_connection=null;
 let calendar_menu_date_format_connection=null;
 let lock_screen_date_format_connection=null;
@@ -95,11 +97,21 @@ function enable()
 	DateMenu._updateClockAndDate();
 
 	LockClock._updateClock = screen_lock_update_clock;
-	//XXX same problem as with `dm` above.
-		LockScreen._updateClock = screen_lock_update_clock;
-		lock_screen_connection = LockScreen._wallClock.connect('notify::clock',
-				Lang.bind(LockScreen, LockScreen._updateClock));
-		LockScreen._updateClock();
+/*	//XXX same problem as with `dm` above.
+
+	lock_screen_locked_connection = LockScreen.connect('lock-screen-shown',
+		function()
+		{
+			log("format-clock: lock screen event emitted")
+			if(!(typeof(LockScreen._clock) === 'undefined')&&(LockScreen._clock))
+			{
+				lock_screen_connection = LockScreen._clock.connect('notify::clock',
+					Lang.bind(LockScreen._clock, LockScreen._clock._updateClock));
+				LockScreen._clock._updateClock();
+				log("format-clock: lock screen date format changed");
+			}
+		}
+	); */
 }
 
 function disable()
@@ -115,10 +127,13 @@ function disable()
 	DateMenu._updateClockAndDate();
 
 	LockClock._updateClock = old_screen_lock_update_clock;
-		LockScreen._wallClock.disconnect(lock_screen_connection);
-		LockScreen._updateClock = old_screen_lock_update_clock;
-		LockScreen._wallClock.connect('notify::clock',
-			Lang.bind(LockScreen,LockScreen._updateClock));
-		LockScreen._updateClock();
+/*	if(!(typeof(LockScreen._clock) === 'undefined')&&(LockScreen._clock))
+	{
+		LockScreen._clock.disconnect(lock_screen_connection);
+		LockScreen._clock.connect('notify::clock',
+			Lang.bind(LockScreen._clock,LockScreen._clock._updateClock));
+		LockScreen._clock._updateClock();
+	}
+	LockScreen.disconnect(lock_screen_locked_connection);*/
 }
 

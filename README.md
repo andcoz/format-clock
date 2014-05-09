@@ -24,6 +24,11 @@ If you want to uninstall the extension, type:
 # From the root of the project directory
 make uninstall
 ```
+## Seconds not ticking
+If you have always :00 seconds in the clock, you should enable the
+"clock-show-seconds" property in Top Panel tab in the gnome-tweak-tool or at the
+path org.gnome.desktop.interface in dconf-editor.
+
 ## License
 
 This program is free software: you can redistribute it and/or modify

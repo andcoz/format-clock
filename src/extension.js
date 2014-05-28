@@ -75,14 +75,14 @@ function enable()
 			panelClockFormat=settings.get_string("panel-clock-format");
 		}
 	);
-	settings.connect
+	calendar_menu_date_format_connection=settings.connect
 	(
 		'changed::calendar-menu-date-format',function()
 		{
 			calendarButtonClockFormat=settings.get_string("calendar-menu-date-format");
 		}
 	);
-	settings.connect
+	lock_screen_date_format_connection=settings.connect
 	(
 		'changed::lock-screen-date-format',function()
 		{

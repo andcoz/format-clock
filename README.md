@@ -24,6 +24,11 @@ If you want to uninstall the extension, type:
 # From the root of the project directory
 make uninstall
 ```
+## Notice
+Currently setting of date format on the lock screen does not work. If I do not
+find the way to make this work in gnome-shell 3.12, this feature will be removed
+completely.
+
 ## Seconds not ticking
 If you have always :00 seconds in the clock, you should enable the
 "clock-show-seconds" property in Top Panel tab in the gnome-tweak-tool or at the

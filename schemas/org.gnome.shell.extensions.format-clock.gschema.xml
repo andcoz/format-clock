@@ -10,10 +10,5 @@
       <summary>Format of date in calendar menu</summary>
       <description>Format of date in calendar menu</description>
     </key>
-    <key name="lock-screen-date-format" type="s">
-      <default>"%-d %B, %A"</default>
-      <summary>Format of date in lock screen</summary>
-      <description>Format of date in lock screen</description>
-    </key>
   </schema>
 </schemalist>

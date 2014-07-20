@@ -88,14 +88,6 @@ function buildPrefsWidget() {
 		"calendar-menu-date-format"
 	);
 
-	let lock_format = addRow
-	(
-		grid,
-		_("Format of date on lock screen:"),
-		2,
-		"lock-screen-date-format"
-	);
-	
 	help_text=new Gtk.Label
 	({
 		label: _("To learn about date format syntax, look, for example, UNIX date manual (type 'man date' in terminal)."),

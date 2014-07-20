@@ -25,10 +25,6 @@ msgstr "Format der Uhr im Panel:"
 msgid "Format of date in calendar menu:"
 msgstr "Format des Datums im Kalendermenü"
 
-#: ../src/prefs.js:83
-msgid "Format of date on lock screen:"
-msgstr "Format des Datums im Sperrbildschirm"
-
 #: ../src/prefs.js:89
 msgid ""
 "To learn about date format syntax, look, for example, UNIX date manual (type "

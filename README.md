@@ -24,6 +24,11 @@ If you want to uninstall the extension, type:
 # From the root of the project directory
 make uninstall
 ```
+##Warning
+**Not compatible with gnome-shell-3.14!**
+Adding compatibility may be somewhat tricky and for now I don't have enough time
+for that. Patches welcome :-)
+
 ## Seconds not ticking
 If you have always :00 seconds in the clock, you should enable the
 "clock-show-seconds" property in Top Panel tab in the gnome-tweak-tool or at the

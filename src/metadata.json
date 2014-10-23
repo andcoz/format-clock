@@ -2,8 +2,7 @@
 	"uuid": "format-clock@eternal-sorrow.github.com", 
 	"name": "Format Clock", 
 	"shell-version": [
-		"3.12",
-		"3.14"
+		"3.12"
 		],
 	"description": "Change top panel clock format.",
 	"version": 2,

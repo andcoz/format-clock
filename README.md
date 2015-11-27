@@ -25,7 +25,7 @@ If you want to uninstall the extension, type:
 make uninstall
 ```
 ##Warning
-**Not compatible with gnome-shell-3.14!**
+**Not compatible with gnome-shell >= 3.14!**
 Adding compatibility may be somewhat tricky and for now I don't have enough time
 for that. Patches welcome :-)
 
